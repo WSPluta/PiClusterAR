@@ -1,0 +1,17 @@
+{
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "resources" : [
+    {
+      "filename" : "1.2.3.4.arreferenceimage"
+    },
+    {
+      "filename" : "I3.arreferenceimage"
+    },
+    {
+      "filename" : "I4.arreferenceimage"
+    }
+  ]
+}
