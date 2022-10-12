@@ -12,7 +12,7 @@ import ARKit
 struct ARViewContainer: UIViewRepresentable {
     @ObservedObject private var dataModel = ClusterDataModel.shared
     
-    @Binding  var clickedPI: String?
+    @Binding  var clickedPI: Node?
     
     func makeUIView(context: Context) -> ARView {
         #if DEBUG
@@ -138,7 +138,7 @@ struct ARViewContainer: UIViewRepresentable {
                 newEntity.model!.materials = [material]
                 
                 // Register taps
-                newEntity.name = node.ip
+                newEntity.name = node.mac
                 newEntity.collision = CollisionComponent(shapes: [ShapeResource.generateConvex(from: newEntity.model!.mesh)])
                 parent.dataModel.arView.installGestures(.all, for: newEntity)
                 
@@ -150,9 +150,11 @@ struct ARViewContainer: UIViewRepresentable {
             let tapLocation = sender.location(in: parent.dataModel.arView)
             
             // Get the entity at the location we've tapped, if one exists
-            if let tapped = parent.dataModel.arView.entity(at: tapLocation) {
-                print("Tapped \(tapped.name)")
-                parent.clickedPI = tapped.name
+            if let tappedEntity = parent.dataModel.arView.entity(at: tapLocation),
+               let tappedNode = parent.dataModel.nodes.first(where: { $0.mac == tappedEntity.name })
+            {
+                print("Tapped \(tappedEntity.name)")
+                parent.clickedPI = tappedNode
             }
         }
         

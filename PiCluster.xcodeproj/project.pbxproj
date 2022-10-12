@@ -13,6 +13,7 @@
 		025B92C328E70CEA00234095 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B92C028E5C64000234095 /* Model.swift */; };
 		025B92C428E70CEF00234095 /* ClusterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B92BE28E5C5EE00234095 /* ClusterDataModel.swift */; };
 		025B92C528E70CF100234095 /* ClusterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B92BE28E5C5EE00234095 /* ClusterDataModel.swift */; };
+		02A501C228F6E6F500FEC746 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A501C128F6E6F500FEC746 /* NodeView.swift */; };
 		02E6E01328BCDE4B00CDAF76 /* PiClusterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E01228BCDE4B00CDAF76 /* PiClusterApp.swift */; };
 		02E6E01528BCDE4B00CDAF76 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E01428BCDE4B00CDAF76 /* ContentView.swift */; };
 		02E6E01728BCDE4C00CDAF76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E6E01628BCDE4C00CDAF76 /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 /* Begin PBXFileReference section */
 		025B92BE28E5C5EE00234095 /* ClusterDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterDataModel.swift; sourceTree = "<group>"; };
 		025B92C028E5C64000234095 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		02A501C128F6E6F500FEC746 /* NodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
 		02E6E00F28BCDE4B00CDAF76 /* Pi Cluster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pi Cluster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E6E01228BCDE4B00CDAF76 /* PiClusterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiClusterApp.swift; sourceTree = "<group>"; };
 		02E6E01428BCDE4B00CDAF76 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				02E6E01428BCDE4B00CDAF76 /* ContentView.swift */,
 				02E6E03A28BF756A00CDAF76 /* ARViewContainer.swift */,
+				02A501C128F6E6F500FEC746 /* NodeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				02E6E01528BCDE4B00CDAF76 /* ContentView.swift in Sources */,
 				025B92C128E5C64000234095 /* Model.swift in Sources */,
 				02E6E01328BCDE4B00CDAF76 /* PiClusterApp.swift in Sources */,
+				02A501C228F6E6F500FEC746 /* NodeView.swift in Sources */,
 				02E6E03B28BF756A00CDAF76 /* ARViewContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

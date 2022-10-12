@@ -10,7 +10,7 @@ import ARKit
 
 struct ContentView: View {
     @StateObject var dataModel = ClusterDataModel.shared
-    @State var clickedPI: String? = nil
+    @State var clickedNodeMAC: Node? = nil
     
     var body: some View {
         if dataModel.nodes.count == 0 {
@@ -19,24 +19,24 @@ struct ContentView: View {
                 ProgressView()
             }
         } else {
-            ARViewContainer(clickedPI: $clickedPI)
+            ARViewContainer(clickedPI: $clickedNodeMAC)
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
                     if !ARWorldTrackingConfiguration.supportsAppClipCodeTracking {
                         print("AppClips not supported on this device")
                     }
                 }
-                .sheet(item: $clickedPI, content: { value in
-                    Text(value)
+                .sheet(item: $clickedNodeMAC, content: { node in
+                    Text(node.ip)
                 })
         }
     }
 }
 
-extension String: Identifiable {
+extension Node: Identifiable {
     public typealias ID = Int
     public var id: Int {
-        return hash
+        return mac.hash
     }
 }
 
