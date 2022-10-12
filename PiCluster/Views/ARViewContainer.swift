@@ -43,6 +43,8 @@ struct ARViewContainer: UIViewRepresentable {
             currentConfiguration.detectionImages = currentConfiguration.detectionImages.union(additionalReferenceImages)
             currentConfiguration.maximumNumberOfTrackedImages = currentConfiguration.detectionImages.count
             dataModel.arView.session.run(currentConfiguration)
+            
+            print("😌")
         } else {
             // Initialize a new AR session with App Clip Code tracking and image tracking.
             dataModel.arView.automaticallyConfigureSession = false
@@ -51,7 +53,9 @@ struct ARViewContainer: UIViewRepresentable {
             newConfiguration.maximumNumberOfTrackedImages = newConfiguration.detectionImages.count
             newConfiguration.automaticImageScaleEstimationEnabled = true
             newConfiguration.appClipCodeTrackingEnabled = true
-            dataModel.arView.session.run(newConfiguration)
+            dataModel.arView.session.run(newConfiguration) //, options: [.resetTracking, .removeExistingAnchors])
+            
+            print("😇")
         }
     }
     
@@ -60,6 +64,11 @@ struct ARViewContainer: UIViewRepresentable {
         
         init(_ parent: ARViewContainer) {
             self.parent = parent
+            super.init()
+            
+            // Taps
+            let tapGesture = UITapGestureRecognizer(target: self, action:#selector(onTap))
+            parent.dataModel.arView.addGestureRecognizer(tapGesture)
         }
         
         func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
@@ -79,10 +88,11 @@ struct ARViewContainer: UIViewRepresentable {
         }
 
         private func generatePIClusterAvatars(switchIP: String, imageAnchor: ARImageAnchor) {
-            //guard let arView else { return }
-            
+            // guard switchIP == "172.20.15.120" else { return }
             print("** \(switchIP)")
-            parent.dataModel.arView.scene.anchors.removeAll()
+            
+            //print(parent.dataModel.arView.scene.anchors)
+            //parent.dataModel.arView.scene.anchors.removeAll()
             
             // This is the reference anchor of the recognized barcode//image
             let barcodeAnchor = AnchorEntity(anchor: imageAnchor)
@@ -95,15 +105,34 @@ struct ARViewContainer: UIViewRepresentable {
             // The scale
             bulbEntity.scale = SIMD3<Float>.one * 0.7
             
-            // We need a lot of them
-            let nodes = parent.dataModel.nodes.filter { $0.switchIP == switchIP }
+            // Filtering by IP and keeping only one record per node MAC address
+            var seenMACs = Set<String>()
+            let nodes = parent.dataModel.nodes
+                .filter { $0.switchIP.value == switchIP }
+                .filter{ seenMACs.insert($0.mac).inserted }
+            
+            print("\(nodes.count)")
+            
+            renderSwitchNodes(nodes, bulbEntity, barcodeAnchor)
+            // print(arView.scene.anchors)
+        }
+        
+        private func renderSwitchNodes(_ nodes: [Node], _ bulbEntity: ModelEntity, _ barcodeAnchor: AnchorEntity) {
+            // • Rendering in 2 rows, 22 nodes each
+            
+            // Offset constants in meters
+            let xOffset: Float = 0.05, zOffset: Float = -0.01
+            let xNodesSpace: Float = 0.01, zRowsSpace:Float = 0.02
             
             for (i, node) in nodes.enumerated() {
                 let newEntity = bulbEntity.clone(recursive: true)
-                newEntity.position.x = Float(i) * 0.01 // 1cm
+                
+                // 2 rows, cut after 22 nodes
+                newEntity.position.x = xOffset + Float(i < 22 ? i : i - 22) * xNodesSpace
+                newEntity.position.z = zOffset + (i < 22 ? 0 : 1) * zRowsSpace
                 
                 // Changing the color
-                let myColor = node.cpu.value > 80.0 ? UIColor.red : .blue
+                let myColor = node.cpu.value > 10.0 ? UIColor.red : .blue
                 let material = SimpleMaterial(color: myColor, isMetallic: false)
                 // (newEntity.children[0] as! ModelEntity).model!.materials = [material]
                 newEntity.model!.materials = [material]
@@ -116,13 +145,7 @@ struct ARViewContainer: UIViewRepresentable {
                 // Showtime
                 barcodeAnchor.addChild(newEntity)
             }
-            // print(arView.scene.anchors)
-            
-            // Taps
-            let tapGesture = UITapGestureRecognizer(target: self, action:#selector(onTap))
-            parent.dataModel.arView.addGestureRecognizer(tapGesture)
         }
-        
         @IBAction func onTap(_ sender: UITapGestureRecognizer) {
             let tapLocation = sender.location(in: parent.dataModel.arView)
             
@@ -144,24 +167,26 @@ struct ARViewContainer: UIViewRepresentable {
             }
         }
                 
-        func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-            for anchor in anchors {
-                if let appClipCodeAnchor = anchor as? ARAppClipCodeAnchor, appClipCodeAnchor.urlDecodingState != .decoding {
-                    let decodedURL: URL
-                    switch appClipCodeAnchor.urlDecodingState {
-                        case .decoded:
-                            decodedURL = appClipCodeAnchor.url!
-                            print("Successfully decoded ARAppClipCodeAnchor url: " + decodedURL.absoluteString)
-                        case .failed:
-                            print("Decoding failure. Trying scanning a code again.")
-                        case .decoding:
-                            continue
-                        default:
-                            continue
-                    }
-                }
-            }
-        }
+//        func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+//            print("Updating anchors")
+//
+//            for anchor in anchors {
+//                if let appClipCodeAnchor = anchor as? ARAppClipCodeAnchor, appClipCodeAnchor.urlDecodingState != .decoding {
+//                    let decodedURL: URL
+//                    switch appClipCodeAnchor.urlDecodingState {
+//                        case .decoded:
+//                            decodedURL = appClipCodeAnchor.url!
+//                            print("Successfully decoded ARAppClipCodeAnchor url: " + decodedURL.absoluteString)
+//                        case .failed:
+//                            print("Decoding failure. Trying scanning a code again.")
+//                        case .decoding:
+//                            continue
+//                        default:
+//                            continue
+//                    }
+//                }
+//            }
+//        }
     }
 }
 

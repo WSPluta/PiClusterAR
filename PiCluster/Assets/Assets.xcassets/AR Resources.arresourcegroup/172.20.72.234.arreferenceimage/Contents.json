@@ -1,6 +1,9 @@
 {
   "images" : [
-
+    {
+      "filename" : "3.heic",
+      "idiom" : "universal"
+    }
   ],
   "info" : {
     "author" : "xcode",
@@ -8,6 +11,6 @@
   },
   "properties" : {
     "unit" : "centimeters",
-    "width" : 5
+    "width" : 3
   }
 }

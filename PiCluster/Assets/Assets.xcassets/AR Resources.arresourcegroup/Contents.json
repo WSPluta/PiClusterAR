@@ -5,13 +5,22 @@
   },
   "resources" : [
     {
-      "filename" : "1.2.3.4.arreferenceimage"
+      "filename" : "172.20.9.213.arreferenceimage"
     },
     {
-      "filename" : "I3.arreferenceimage"
+      "filename" : "172.20.15.120.arreferenceimage"
     },
     {
-      "filename" : "I4.arreferenceimage"
+      "filename" : "172.20.44.205.arreferenceimage"
+    },
+    {
+      "filename" : "172.20.72.234.arreferenceimage"
+    },
+    {
+      "filename" : "172.20.177.76.arreferenceimage"
+    },
+    {
+      "filename" : "172.20.215.140.arreferenceimage"
     }
   ]
 }

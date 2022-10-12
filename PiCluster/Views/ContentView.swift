@@ -11,22 +11,32 @@ import ARKit
 struct ContentView: View {
     @StateObject var dataModel = ClusterDataModel.shared
     @State var clickedPI: String? = nil
-    @State var showPopover = false
     
     var body: some View {
-        ARViewContainer(clickedPI: $clickedPI)
-            .edgesIgnoringSafeArea(.all)
-            .onAppear {
-                if !ARWorldTrackingConfiguration.supportsAppClipCodeTracking {
-                    print("AppClips not supported on this device")
+        if dataModel.nodes.count == 0 {
+            HStack(spacing: 10) {
+                Text("Loading data from cloud")
+                ProgressView()
+            }
+        } else {
+            ARViewContainer(clickedPI: $clickedPI)
+                .edgesIgnoringSafeArea(.all)
+                .onAppear {
+                    if !ARWorldTrackingConfiguration.supportsAppClipCodeTracking {
+                        print("AppClips not supported on this device")
+                    }
                 }
-            }
-            .onChange(of: clickedPI) { newValue in
-                showPopover = true
-            }
-            .sheet(isPresented: $showPopover) {
-                Text(clickedPI ?? "none")
-            }
+                .sheet(item: $clickedPI, content: { value in
+                    Text(value)
+                })
+        }
+    }
+}
+
+extension String: Identifiable {
+    public typealias ID = Int
+    public var id: Int {
+        return hash
     }
 }
 

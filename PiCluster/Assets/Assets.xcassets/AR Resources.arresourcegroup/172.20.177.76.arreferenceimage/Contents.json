@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "IMG_9432.jpg",
+      "filename" : "4.heic",
       "idiom" : "universal"
     }
   ],
@@ -11,6 +11,6 @@
   },
   "properties" : {
     "unit" : "centimeters",
-    "width" : 2
+    "width" : 3
   }
 }

@@ -6,9 +6,19 @@
 import Foundation
 
 struct Cluster: Decodable {
-    let items: [Node]
-    let hasMore: Bool
-    let limit, offset, count: Int
+    let nodes: [ClusterNode]
+    
+    enum CodingKeys: String, CodingKey {
+        case nodes = "CLUSTER"
+    }
+}
+
+struct ClusterNode: Decodable {
+    let node: Node
+    
+    enum CodingKeys: String, CodingKey {
+        case node = "DATA"
+    }
 }
 
 struct Node: Decodable {
@@ -20,9 +30,9 @@ struct Node: Decodable {
     let diskPercentage: Percent
     let cpuTemperature: Temperature
     let ip, mac: String
-    let port, switchIP: String
+    let port: PortType
+    let switchIP: IPType
     // let processes: [[Process]]
-    let status: String
     
     enum CodingKeys: String, CodingKey {
         case cpu = "CPU"
@@ -36,7 +46,6 @@ struct Node: Decodable {
         case ip, mac, port
         case switchIP = "switch_ip"
         // case processes
-        case status
     }
 }
 
@@ -75,6 +84,36 @@ struct Temperature: Decodable {
             self.value = myFloat
         } else {
             throw DecodingError.typeMismatch(Percent.self, .init(codingPath: decoder.codingPath, debugDescription: "\(floatString) is not in the expected format"))
+        }
+    }
+}
+
+struct PortType: Decodable {
+    let value: Int
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        do {
+            value = try container.decode(Int.self)
+        } catch DecodingError.typeMismatch {
+            if let myValue = Int(try container.decode(String.self)) {
+                value = myValue
+            } else {
+                throw DecodingError.typeMismatch(Percent.self, .init(codingPath: decoder.codingPath, debugDescription: "`Port` is not in the expected format"))
+            }
+        }
+    }
+}
+
+struct IPType: Decodable {
+    let value: String
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        do {
+            value = try container.decode(String.self)
+        } catch DecodingError.typeMismatch {
+            value = String(try container.decode(Int.self))
         }
     }
 }

@@ -43,21 +43,21 @@ final class ClusterDataModel: ObservableObject {
             } receiveValue: { items in
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     self.nodes = items
-                    print("*")
+                    print("Nodes parsed")
                 }
             }
     }
     
     private func fetchNodesData() -> AnyPublisher<[Node], Error>{
-//        let url = URL(string: "https://g2f4dc3e5463897-ardata.adb.uk-london-1.oraclecloudapps.com/ords/picluster/AR/DigitalTwin")!
-//
-//        return URLSession.shared
-//            .dataTaskPublisher(for: url)
-//            .map (\.data)
+        let url = URL(string: "https://g2f4dc3e5463897-ardata.adb.uk-london-1.oraclecloudapps.com/ords/picluster/AR/v2/10000")!
+        //"https://g2f4dc3e5463897-ardata.adb.uk-london-1.oraclecloudapps.com/ords/picluster/AR/DigitalTwin")!
 
-        return CurrentValueSubject<Data, Error>(testJSON.data(using: .utf8)!)
+        return URLSession.shared
+            .dataTaskPublisher(for: url)
+            .map (\.data)
             .decode(type: Cluster.self, decoder: JSONDecoder())
-            .map(\.items)
+            .map(\.nodes)
+            .map { $0.map(\.node) }
             .eraseToAnyPublisher()
     }
     
