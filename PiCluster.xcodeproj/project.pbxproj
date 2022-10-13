@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		025B92BF28E5C5EE00234095 /* ClusterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B92BE28E5C5EE00234095 /* ClusterDataModel.swift */; };
 		025B92C128E5C64000234095 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B92C028E5C64000234095 /* Model.swift */; };
-		025B92C228E70CEA00234095 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B92C028E5C64000234095 /* Model.swift */; };
 		025B92C328E70CEA00234095 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B92C028E5C64000234095 /* Model.swift */; };
 		025B92C428E70CEF00234095 /* ClusterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B92BE28E5C5EE00234095 /* ClusterDataModel.swift */; };
-		025B92C528E70CF100234095 /* ClusterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B92BE28E5C5EE00234095 /* ClusterDataModel.swift */; };
 		02A501C228F6E6F500FEC746 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A501C128F6E6F500FEC746 /* NodeView.swift */; };
 		02E6E01328BCDE4B00CDAF76 /* PiClusterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E01228BCDE4B00CDAF76 /* PiClusterApp.swift */; };
 		02E6E01528BCDE4B00CDAF76 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E01428BCDE4B00CDAF76 /* ContentView.swift */; };
@@ -25,16 +23,8 @@
 		02E6E03428BF534600CDAF76 /* Pi Cluster App Clip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 02E6E02528BF534600CDAF76 /* Pi Cluster App Clip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		02E6E03B28BF756A00CDAF76 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E03A28BF756A00CDAF76 /* ARViewContainer.swift */; };
 		02E6E03C28BF756A00CDAF76 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E03A28BF756A00CDAF76 /* ARViewContainer.swift */; };
-		02E6E04728BF776300CDAF76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E04628BF776300CDAF76 /* AppDelegate.swift */; };
-		02E6E04928BF776300CDAF76 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E04828BF776300CDAF76 /* ContentView.swift */; };
-		02E6E04D28BF776300CDAF76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E6E04C28BF776300CDAF76 /* Assets.xcassets */; };
-		02E6E05028BF776300CDAF76 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E6E04F28BF776300CDAF76 /* Preview Assets.xcassets */; };
 		02E6E05428BF781500CDAF76 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E04A28BF776300CDAF76 /* Experience.rcproject */; };
 		02E6E05528BF783400CDAF76 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E04A28BF776300CDAF76 /* Experience.rcproject */; };
-		02E6E05628BF785700CDAF76 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E04A28BF776300CDAF76 /* Experience.rcproject */; };
-		02E6E05828BF8B8F00CDAF76 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E05728BF8B8F00CDAF76 /* ARViewContainer.swift */; };
-		02E6E05928BF8BDF00CDAF76 /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E6E03D28BF765700CDAF76 /* ARModel.swift */; };
-		02E6E05C28BF966B00CDAF76 /* Pi Cluster App Clip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 02E6E02528BF534600CDAF76 /* Pi Cluster App Clip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,17 +49,6 @@
 			name = "Embed App Clips";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		02E6E05F28BF966B00CDAF76 /* Embed App Clips */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
-			dstSubfolderSpec = 16;
-			files = (
-				02E6E05C28BF966B00CDAF76 /* Pi Cluster App Clip.app in Embed App Clips */,
-			);
-			name = "Embed App Clips";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -90,15 +69,7 @@
 		02E6E03028BF534600CDAF76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02E6E03128BF534600CDAF76 /* Pi_Cluster_App_Clip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pi_Cluster_App_Clip.entitlements; sourceTree = "<group>"; };
 		02E6E03A28BF756A00CDAF76 /* ARViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
-		02E6E03D28BF765700CDAF76 /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
-		02E6E04428BF776300CDAF76 /* AR test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		02E6E04628BF776300CDAF76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		02E6E04828BF776300CDAF76 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		02E6E04A28BF776300CDAF76 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
-		02E6E04C28BF776300CDAF76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		02E6E04F28BF776300CDAF76 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		02E6E05728BF8B8F00CDAF76 /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
-		02E6E05A28BF964100CDAF76 /* AR test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AR test.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,13 +81,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		02E6E02228BF534600CDAF76 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02E6E04128BF776300CDAF76 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -149,7 +113,6 @@
 			children = (
 				02E6E01128BCDE4B00CDAF76 /* PiCluster */,
 				02E6E02628BF534600CDAF76 /* Pi Cluster App Clip */,
-				02E6E04528BF776300CDAF76 /* AR test */,
 				02E6E01028BCDE4B00CDAF76 /* Products */,
 				02E6E05B28BF966B00CDAF76 /* Frameworks */,
 			);
@@ -160,7 +123,6 @@
 			children = (
 				02E6E00F28BCDE4B00CDAF76 /* Pi Cluster.app */,
 				02E6E02528BF534600CDAF76 /* Pi Cluster App Clip.app */,
-				02E6E04428BF776300CDAF76 /* AR test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,28 +179,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		02E6E04528BF776300CDAF76 /* AR test */ = {
-			isa = PBXGroup;
-			children = (
-				02E6E05A28BF964100CDAF76 /* AR test.entitlements */,
-				02E6E03D28BF765700CDAF76 /* ARModel.swift */,
-				02E6E04628BF776300CDAF76 /* AppDelegate.swift */,
-				02E6E04828BF776300CDAF76 /* ContentView.swift */,
-				02E6E05728BF8B8F00CDAF76 /* ARViewContainer.swift */,
-				02E6E04C28BF776300CDAF76 /* Assets.xcassets */,
-				02E6E04E28BF776300CDAF76 /* Preview Content */,
-			);
-			path = "AR test";
-			sourceTree = "<group>";
-		};
-		02E6E04E28BF776300CDAF76 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				02E6E04F28BF776300CDAF76 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		02E6E05B28BF966B00CDAF76 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,24 +227,6 @@
 			productReference = 02E6E02528BF534600CDAF76 /* Pi Cluster App Clip.app */;
 			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
-		02E6E04328BF776300CDAF76 /* AR test */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 02E6E05128BF776300CDAF76 /* Build configuration list for PBXNativeTarget "AR test" */;
-			buildPhases = (
-				02E6E04028BF776300CDAF76 /* Sources */,
-				02E6E04128BF776300CDAF76 /* Frameworks */,
-				02E6E04228BF776300CDAF76 /* Resources */,
-				02E6E05F28BF966B00CDAF76 /* Embed App Clips */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "AR test";
-			productName = "AR test";
-			productReference = 02E6E04428BF776300CDAF76 /* AR test.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -319,9 +241,6 @@
 						CreatedOnToolsVersion = 14.0;
 					};
 					02E6E02428BF534600CDAF76 = {
-						CreatedOnToolsVersion = 14.0;
-					};
-					02E6E04328BF776300CDAF76 = {
 						CreatedOnToolsVersion = 14.0;
 					};
 				};
@@ -343,7 +262,6 @@
 			targets = (
 				02E6E00E28BCDE4B00CDAF76 /* Pi Cluster */,
 				02E6E02428BF534600CDAF76 /* Pi Cluster App Clip */,
-				02E6E04328BF776300CDAF76 /* AR test */,
 			);
 		};
 /* End PBXProject section */
@@ -364,15 +282,6 @@
 			files = (
 				02E6E02F28BF534600CDAF76 /* Preview Assets.xcassets in Resources */,
 				02E6E02C28BF534600CDAF76 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02E6E04228BF776300CDAF76 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02E6E05028BF776300CDAF76 /* Preview Assets.xcassets in Resources */,
-				02E6E04D28BF776300CDAF76 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,20 +312,6 @@
 				02E6E02A28BF534600CDAF76 /* ContentView.swift in Sources */,
 				02E6E02828BF534600CDAF76 /* Pi_Cluster_App_ClipApp.swift in Sources */,
 				02E6E03C28BF756A00CDAF76 /* ARViewContainer.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02E6E04028BF776300CDAF76 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02E6E04928BF776300CDAF76 /* ContentView.swift in Sources */,
-				02E6E05828BF8B8F00CDAF76 /* ARViewContainer.swift in Sources */,
-				02E6E04728BF776300CDAF76 /* AppDelegate.swift in Sources */,
-				025B92C228E70CEA00234095 /* Model.swift in Sources */,
-				02E6E05628BF785700CDAF76 /* Experience.rcproject in Sources */,
-				02E6E05928BF8BDF00CDAF76 /* ARModel.swift in Sources */,
-				025B92C528E70CF100234095 /* ClusterDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +447,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"PiCluster/Preview Content\"";
 				DEVELOPMENT_TEAM = Q72KP3868R;
@@ -598,7 +493,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"PiCluster/Preview Content\"";
 				DEVELOPMENT_TEAM = Q72KP3868R;
@@ -641,7 +536,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Pi Cluster App Clip/Pi_Cluster_App_Clip.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Pi Cluster App Clip/Preview Content\"";
 				DEVELOPMENT_TEAM = Q72KP3868R;
 				ENABLE_PREVIEWS = YES;
@@ -679,7 +574,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Pi Cluster App Clip/Pi_Cluster_App_Clip.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Pi Cluster App Clip/Preview Content\"";
 				DEVELOPMENT_TEAM = Q72KP3868R;
 				ENABLE_PREVIEWS = YES;
@@ -699,81 +594,6 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = bf.multi.PiCluster.Clip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		02E6E05228BF776300CDAF76 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "AR test/AR test.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AR test/Preview Content\"";
-				DEVELOPMENT_TEAM = Q72KP3868R;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "bf.multi.AR-test";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		02E6E05328BF776300CDAF76 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "AR test/AR test.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AR test/Preview Content\"";
-				DEVELOPMENT_TEAM = Q72KP3868R;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "bf.multi.AR-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -812,15 +632,6 @@
 			buildConfigurations = (
 				02E6E03628BF534600CDAF76 /* Debug */,
 				02E6E03728BF534600CDAF76 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		02E6E05128BF776300CDAF76 /* Build configuration list for PBXNativeTarget "AR test" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				02E6E05228BF776300CDAF76 /* Debug */,
-				02E6E05328BF776300CDAF76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

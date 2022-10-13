@@ -30,11 +30,12 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
+        context.coordinator.updateAvatars()
         print("Updated !!!")
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(self) //(clickedPI: $clickedPI)
+        Coordinator(self)
     }
     
     func runARSession(withAdditionalReferenceImages additionalReferenceImages: Set<ARReferenceImage> = Set<ARReferenceImage>()) {
@@ -43,8 +44,7 @@ struct ARViewContainer: UIViewRepresentable {
             currentConfiguration.detectionImages = currentConfiguration.detectionImages.union(additionalReferenceImages)
             currentConfiguration.maximumNumberOfTrackedImages = currentConfiguration.detectionImages.count
             dataModel.arView.session.run(currentConfiguration)
-            
-            print("😌")
+            print("Update current AR session")
         } else {
             // Initialize a new AR session with App Clip Code tracking and image tracking.
             dataModel.arView.automaticallyConfigureSession = false
@@ -54,14 +54,13 @@ struct ARViewContainer: UIViewRepresentable {
             newConfiguration.automaticImageScaleEstimationEnabled = true
             newConfiguration.appClipCodeTrackingEnabled = true
             dataModel.arView.session.run(newConfiguration) //, options: [.resetTracking, .removeExistingAnchors])
-            
-            print("😇")
+            print("New AR session created")
         }
     }
     
     class Coordinator: NSObject, ARSessionDelegate {
         var parent: ARViewContainer
-        
+               
         init(_ parent: ARViewContainer) {
             self.parent = parent
             super.init()
@@ -72,32 +71,37 @@ struct ARViewContainer: UIViewRepresentable {
         }
         
         func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-            //debugPrint("Anchors added to the scene: ", anchors)
-            
+            // debugPrint("Anchors added to the scene: ", anchors)
             for anchor in anchors {
                 if anchor is ARAppClipCodeAnchor {
                     print("AppClip found !!")
                 }
                 
-                if let imageAnchor = anchor as? ARImageAnchor,
-                   let productKey = imageAnchor.referenceImage.name
-                {
-                    generatePIClusterAvatars(switchIP: productKey, imageAnchor: imageAnchor)
+                if let imageAnchor = anchor as? ARImageAnchor {
+                    addQRAnchor(imageAnchor: imageAnchor)
                 }
             }
         }
+        
+        func updateAvatars() {
+            parent.dataModel.arView.scene.anchors.forEach { a in
+                a.children.removeAll()
+                generateAvatars(for: a as! AnchorEntity)
+            }
+        }
 
-        private func generatePIClusterAvatars(switchIP: String, imageAnchor: ARImageAnchor) {
-            // guard switchIP == "172.20.15.120" else { return }
-            print("** \(switchIP)")
-            
-            //print(parent.dataModel.arView.scene.anchors)
-            //parent.dataModel.arView.scene.anchors.removeAll()
-            
+        private func addQRAnchor(imageAnchor: ARImageAnchor) {
             // This is the reference anchor of the recognized barcode//image
             let barcodeAnchor = AnchorEntity(anchor: imageAnchor)
-            parent.dataModel.arView.scene.addAnchor(barcodeAnchor)
+            barcodeAnchor.name = imageAnchor.referenceImage.name ?? "-"
             
+            parent.dataModel.arView.scene.anchors.append(barcodeAnchor) //.addAnchor(barcodeAnchor)
+                        
+            // Adding the avatars (the small bulbs next to each Pi)
+            generateAvatars(for: barcodeAnchor)
+        }
+        
+        func generateAvatars(for barcodeAnchor: AnchorEntity) {
             // Now the indicators for each Pi in the row
             let piScene = try! Experience.loadPi()
             let bulbEntity = piScene.bulb!.children[0] as! ModelEntity
@@ -108,18 +112,14 @@ struct ARViewContainer: UIViewRepresentable {
             // Filtering by IP and keeping only one record per node MAC address
             var seenMACs = Set<String>()
             let nodes = parent.dataModel.nodes
-                .filter { $0.switchIP.value == switchIP }
+                .filter { $0.switchIP.value == barcodeAnchor.name }
                 .filter{ seenMACs.insert($0.mac).inserted }
             
-            print("\(nodes.count)")
-            
             renderSwitchNodes(nodes, bulbEntity, barcodeAnchor)
-            // print(arView.scene.anchors)
         }
         
+        /// Rendering in 2 rows, 22 nodes each
         private func renderSwitchNodes(_ nodes: [Node], _ bulbEntity: ModelEntity, _ barcodeAnchor: AnchorEntity) {
-            // • Rendering in 2 rows, 22 nodes each
-            
             // Offset constants in meters
             let xOffset: Float = 0.05, zOffset: Float = -0.01
             let xNodesSpace: Float = 0.01, zRowsSpace:Float = 0.02
@@ -132,8 +132,7 @@ struct ARViewContainer: UIViewRepresentable {
                 newEntity.position.z = zOffset + (i < 22 ? 0 : 1) * zRowsSpace
                 
                 // Changing the color
-                let myColor = node.cpu.value > 10.0 ? UIColor.red : .blue
-                let material = SimpleMaterial(color: myColor, isMetallic: false)
+                let material = SimpleMaterial(color: color(for: node), isMetallic: false)
                 // (newEntity.children[0] as! ModelEntity).model!.materials = [material]
                 newEntity.model!.materials = [material]
                 
@@ -146,6 +145,16 @@ struct ARViewContainer: UIViewRepresentable {
                 barcodeAnchor.addChild(newEntity)
             }
         }
+        
+        private func color(for node: Node) -> UIColor {
+            switch node.cpu.value {
+                case 0..<10: return .blue
+                case 10..<90: return .yellow
+                case 90..<100: return .red
+                default: return .blue
+            }
+        }
+        
         @IBAction func onTap(_ sender: UITapGestureRecognizer) {
             let tapLocation = sender.location(in: parent.dataModel.arView)
             

@@ -22,13 +22,13 @@ struct ClusterNode: Decodable {
 }
 
 struct Node: Decodable {
-    let cpu: Percent
+    var cpu: PercentType
     let memoryFree, memoryTotal: Double
-    let memoryPercentage: Percent
+    let memoryPercentage: PercentType
     let diskFree: Double
     let diskTotal: Int
-    let diskPercentage: Percent
-    let cpuTemperature: Temperature
+    let diskPercentage: PercentType
+    let cpuTemperature: TemperatureType
     let ip, mac: String
     let port: PortType
     let switchIP: IPType
@@ -62,20 +62,20 @@ struct Process: Codable {
 
 // -------------------------------
 
-struct Percent: Decodable {
-    let value: Float
+struct PercentType: Decodable {
+    var value: Float
     
     init(from decoder: Decoder) throws {
         let floatString = try decoder.singleValueContainer().decode(String.self)
         if let myFloat = Float(floatString.replacingOccurrences(of: "%", with: "", options: .literal, range: nil)) {
             self.value = myFloat
         } else {
-            throw DecodingError.typeMismatch(Percent.self, .init(codingPath: decoder.codingPath, debugDescription: "\(floatString) is not in the expected format"))
+            throw DecodingError.typeMismatch(PercentType.self, .init(codingPath: decoder.codingPath, debugDescription: "\(floatString) is not in the expected format"))
         }
     }
 }
 
-struct Temperature: Decodable {
+struct TemperatureType: Decodable {
     let value: Float
     
     init(from decoder: Decoder) throws {
@@ -83,11 +83,12 @@ struct Temperature: Decodable {
         if let myFloat = Float(floatString.replacingOccurrences(of: "'C", with: "", options: .literal, range: nil)) {
             self.value = myFloat
         } else {
-            throw DecodingError.typeMismatch(Percent.self, .init(codingPath: decoder.codingPath, debugDescription: "\(floatString) is not in the expected format"))
+            throw DecodingError.typeMismatch(PercentType.self, .init(codingPath: decoder.codingPath, debugDescription: "\(floatString) is not in the expected format"))
         }
     }
 }
 
+/// Data coming from JSON could be either String or Int
 struct PortType: Decodable {
     let value: Int
     
@@ -99,12 +100,13 @@ struct PortType: Decodable {
             if let myValue = Int(try container.decode(String.self)) {
                 value = myValue
             } else {
-                throw DecodingError.typeMismatch(Percent.self, .init(codingPath: decoder.codingPath, debugDescription: "`Port` is not in the expected format"))
+                throw DecodingError.typeMismatch(PercentType.self, .init(codingPath: decoder.codingPath, debugDescription: "`Port` is not in the expected format"))
             }
         }
     }
 }
 
+/// Data coming from JSON could be either String or Int
 struct IPType: Decodable {
     let value: String
     
