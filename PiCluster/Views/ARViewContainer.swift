@@ -128,13 +128,14 @@ struct ARViewContainer: UIViewRepresentable {
                 let newEntity = bulbEntity.clone(recursive: true)
                 
                 // 2 rows, cut after 22 nodes
-                newEntity.position.x = xOffset + Float(i < 22 ? i : i - 22) * xNodesSpace
-                newEntity.position.z = zOffset + (i < 22 ? 0 : 1) * zRowsSpace
+                let cut = 22 // <- nodes
+                newEntity.position.x = xOffset + Float(i < cut ? i : i - cut) * xNodesSpace
+                newEntity.position.z = zOffset + (i < cut ? 0 : 1) * zRowsSpace
                 
                 // Changing the color
                 let material = SimpleMaterial(color: color(for: node), isMetallic: false)
-                // (newEntity.children[0] as! ModelEntity).model!.materials = [material]
                 newEntity.model!.materials = [material]
+                // (newEntity.children[0] as! ModelEntity).model!.materials = [material]
                 
                 // Register taps
                 newEntity.name = node.mac
@@ -151,7 +152,7 @@ struct ARViewContainer: UIViewRepresentable {
                 case 0..<10: return .blue
                 case 10..<90: return .yellow
                 case 90..<100: return .red
-                default: return .blue
+                default: return .red
             }
         }
         
@@ -166,7 +167,6 @@ struct ARViewContainer: UIViewRepresentable {
                 parent.clickedPI = tappedNode
             }
         }
-        
         
         func session(_ session: ARSession, didRemove anchors: [ARAnchor]) {
             for anchor in anchors {
@@ -198,31 +198,5 @@ struct ARViewContainer: UIViewRepresentable {
 //                }
 //            }
 //        }
-    }
-}
-
-extension Entity {
-    func present(on parent: Entity) {
-        /* The sunflower model's hardcoded scale.
-         An app may wish to assign a unique scale value per App Clip Code model. */
-        let finalScale = SIMD3<Float>.one //* 5
-        
-        parent.addChild(self)
-        // To display the model, initialize it at a small scale, then animate by transitioning to the original scale.
-        self.move(
-            to: Transform(
-                scale: SIMD3<Float>.one * (1.0 / 1000),
-                rotation: simd_quatf.init(angle: Float.pi, axis: SIMD3<Float>(x: 0, y: 1, z: 0))
-            ),
-            relativeTo: self
-        )
-        self.move(
-            to: Transform(
-                scale: finalScale,
-                rotation: simd_quatf.init(angle: Float.pi, axis: SIMD3<Float>(x: 0, y: 1, z: 0))
-            ),
-            relativeTo: self,
-            duration: 3
-        )
     }
 }

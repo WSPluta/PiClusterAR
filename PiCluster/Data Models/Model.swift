@@ -22,7 +22,7 @@ struct ClusterNode: Decodable {
 }
 
 struct Node: Decodable {
-    var cpu: PercentType
+    let cpu: PercentType
     let memoryFree, memoryTotal: Double
     let memoryPercentage: PercentType
     let diskFree: Double

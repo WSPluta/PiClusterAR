@@ -47,9 +47,6 @@ final class ClusterDataModel: ObservableObject {
             } receiveValue: { items in
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     self.nodes = items
-//                    for index in 0..<self.nodes.count {
-//                        self.nodes[index].cpu.value = Float(Int.random(in: 1..<20))
-//                    }
                     print("Nodes parsed")
                 }
             }
