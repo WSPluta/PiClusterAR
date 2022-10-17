@@ -123,8 +123,8 @@ struct ARViewContainer: UIViewRepresentable {
         /// Rendering in 2 rows, 22 nodes each
         private func renderSwitchNodes(_ nodes: [Node], _ bulbEntity: ModelEntity, _ barcodeAnchor: AnchorEntity) {
             // Offset constants in meters
-            let xOffset: Float = -0.05, zOffset: Float = -0.01
-            let xNodesSpace: Float = -0.01, zRowsSpace:Float = 0.02
+            let xOffset: Float = -0.09, zOffset: Float = -0.07
+            let xNodesSpace: Float = -0.015, zRowsSpace:Float = 0.09
             
             for (i, node) in nodes.enumerated() {
                 let newEntity = bulbEntity.clone(recursive: true)
