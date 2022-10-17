@@ -23,7 +23,7 @@ struct ARViewContainer: UIViewRepresentable {
         // Handle ARSession events via delegate
         dataModel.arView.session.delegate = context.coordinator
         
-        let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil)!
+        let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources CW", bundle: nil)!
         runARSession(withAdditionalReferenceImages: referenceImages)
                 
         return dataModel.arView
@@ -91,6 +91,8 @@ struct ARViewContainer: UIViewRepresentable {
         }
 
         private func addQRAnchor(imageAnchor: ARImageAnchor) {
+            print(imageAnchor.name ?? "?")
+            
             // This is the reference anchor of the recognized barcode//image
             let barcodeAnchor = AnchorEntity(anchor: imageAnchor)
             barcodeAnchor.name = imageAnchor.referenceImage.name ?? "-"
@@ -121,8 +123,8 @@ struct ARViewContainer: UIViewRepresentable {
         /// Rendering in 2 rows, 22 nodes each
         private func renderSwitchNodes(_ nodes: [Node], _ bulbEntity: ModelEntity, _ barcodeAnchor: AnchorEntity) {
             // Offset constants in meters
-            let xOffset: Float = 0.05, zOffset: Float = -0.01
-            let xNodesSpace: Float = 0.01, zRowsSpace:Float = 0.02
+            let xOffset: Float = -0.05, zOffset: Float = -0.01
+            let xNodesSpace: Float = -0.01, zRowsSpace:Float = 0.02
             
             for (i, node) in nodes.enumerated() {
                 let newEntity = bulbEntity.clone(recursive: true)
